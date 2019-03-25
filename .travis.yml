@@ -20,3 +20,16 @@ after_success:
   - docker push gustavobautista/multi-nginx
   - docker push gustavobautista/multi-server
   - docker push gustavobautista/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-#
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: #EBURI
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
